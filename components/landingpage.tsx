@@ -12,10 +12,9 @@ export default function LandingPage() {
   const containerRef = useRef(null);
   const navRef = useRef(null);
   const labTextRef = useRef(null);
-  const textRef = useRef(null);
   const numberRef = useRef(null);
   const redBoxRef = useRef(null);
-  const initialTimelineRef = useRef(null);
+  const initialTimelineRef = useRef<gsap.core.Timeline | null>(null);
 
   const playInitialAnimation = () => {
     if (initialTimelineRef.current) {
@@ -83,17 +82,20 @@ export default function LandingPage() {
       },
     });
 
-    scrollTl.fromTo(logoRef.current, {
-      scale: initialLogoScale,
-      color: "#a10000"
-    },
+    scrollTl.fromTo(
+      logoRef.current,
       {
-      scale: isMobile ? 3 : isTablet ? 3.5 : 4,
-      color: "#e5e5e5",
-      transformOrigin: "center center",
-      duration: 1,
-      ease: "none",
-    });
+        scale: initialLogoScale,
+        color: "#a10000",
+      },
+      {
+        scale: isMobile ? 3 : isTablet ? 3.5 : 4,
+        color: "#e5e5e5",
+        transformOrigin: "center center",
+        duration: 1,
+        ease: "none",
+      }
+    );
 
     scrollTl.to(
       manRef.current,
@@ -175,7 +177,7 @@ export default function LandingPage() {
         <nav
           ref={navRef}
           className="absolute top-0 left-0 right-0 z-30 flex flex-col sm:flex-row justify-between items-center px-4 sm:px-8 py-4 sm:py-6 gap-4 sm:gap-0"
-          style={{transform: "translateY(-100)", opacity: 0}}
+          style={{ transform: "translateY(-100)", opacity: 0 }}
         >
           <div className="flex items-center gap-4">
             <div className="text-lg sm:text-xl font-bold text-black">
@@ -204,7 +206,7 @@ export default function LandingPage() {
         <h1
           ref={logoRef}
           className="absolute text-[15vw] sm:text-[12vw] lg:text-[10vw] font-extrabold tracking-tight text-black z-0"
-          style={{transform: "scale(0.8)", color: "#000000"}}
+          style={{ transform: "scale(0.8)", color: "#000000" }}
         >
           X-LABS
         </h1>
@@ -225,14 +227,15 @@ export default function LandingPage() {
               alt="text img"
               className="h-[100%] w-auto object-contain"
               width={300}
-              height={400} />
+              height={400}
+            />
           </div>
         </div>
 
         <div
           ref={labTextRef}
           className="absolute left-[4vw] sm:left-[6vw] lg:left-[8vw] top-[30vh] sm:top-[32vh] lg:top-[35vh] z-20"
-          style={{transform: "translateX(-200px)", opacity:0}}
+          style={{ transform: "translateX(-200px)", opacity: 0 }}
         >
           <h2 className="text-[12vw] sm:text-[10vw] lg:text-[8vw] font-black text-stone-800 leading-none">
             lab.

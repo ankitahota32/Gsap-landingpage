@@ -1,14 +1,16 @@
 "use client"
 
-import { usestate, useEffect } from "react"
+import { useState, useEffect } from "react"
 
 export function useMobile(breakpoint = 786): boolean {
-    const [isMobile, setIsMobile] = usestate(false)
+    const [isMobile] = useState(false)
 
     useEffect(() => {
         if (typeof window === "undefined") return 
 
-        const checkSize()
+        const checkSize = () => {
+            console.log("checking size");
+        }
 
         window.addEventListener("resize", checkSize)
 
