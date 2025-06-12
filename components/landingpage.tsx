@@ -27,7 +27,6 @@ export default function LandingPage() {
 
     gsap.set(navRef.current, { y: -100, opacity: 0 });
     gsap.set(labTextRef.current, { x: -200, opacity: 0 });
-    gsap.set(textRef.current, { x: -200, opacity: 0 });
     gsap.set(numberRef.current, { y: 100, opacity: 0 });
     gsap.set(redBoxRef.current, { x: "100vw", opacity: 0 });
 
@@ -141,17 +140,6 @@ export default function LandingPage() {
     );
 
     scrollTl.to(
-      textRef.current,
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.4,
-        ease: "none",
-      },
-      0.4
-    );
-
-    scrollTl.to(
       numberRef.current,
       {
         y: 0,
@@ -187,6 +175,7 @@ export default function LandingPage() {
         <nav
           ref={navRef}
           className="absolute top-0 left-0 right-0 z-30 flex flex-col sm:flex-row justify-between items-center px-4 sm:px-8 py-4 sm:py-6 gap-4 sm:gap-0"
+          style={{transform: "translateY(-100)", opacity: 0}}
         >
           <div className="flex items-center gap-4">
             <div className="text-lg sm:text-xl font-bold text-black">
@@ -215,6 +204,7 @@ export default function LandingPage() {
         <h1
           ref={logoRef}
           className="absolute text-[15vw] sm:text-[12vw] lg:text-[10vw] font-extrabold tracking-tight text-black z-0"
+          style={{transform: "scale(0.8)", color: "#000000"}}
         >
           X-LABS
         </h1>
@@ -225,6 +215,8 @@ export default function LandingPage() {
           style={{
             right: "2vw",
             top: "60vh",
+            transform: "translateX(100vw)",
+            opacity: 0,
           }}
         >
           <div className="flex h-full px-4 py-2">
@@ -240,6 +232,7 @@ export default function LandingPage() {
         <div
           ref={labTextRef}
           className="absolute left-[4vw] sm:left-[6vw] lg:left-[8vw] top-[30vh] sm:top-[32vh] lg:top-[35vh] z-20"
+          style={{transform: "translateX(-200px)", opacity:0}}
         >
           <h2 className="text-[12vw] sm:text-[10vw] lg:text-[8vw] font-black text-stone-800 leading-none">
             lab.
@@ -249,6 +242,7 @@ export default function LandingPage() {
         <div
           ref={numberRef}
           className="absolute left-[4vw] sm:left-[6vw] lg:left-[8vw] bottom-[10vh] sm:bottom-[12vh] lg:bottom-[15vh] z-20"
+          style={{ transform: "translateY(100px)", opacity: 0 }}
         >
           <span className="text-[6vw] sm:text-[5vw] lg:text-[4vw] font-black text-stone-600 transform -rotate-90 inline-block origin-center">
             100
@@ -264,6 +258,7 @@ export default function LandingPage() {
             width={700}
             height={900}
             priority
+            style={{ transform: "scale(1.2)" }}
           />
         </div>
       </div>
