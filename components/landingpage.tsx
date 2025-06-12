@@ -60,7 +60,6 @@ export default function LandingPage() {
   };
 
   useEffect(() => {
-
     window.scrollTo(0, 0);
 
     gsap.registerPlugin(ScrollTrigger);
@@ -69,6 +68,8 @@ export default function LandingPage() {
 
     const isMobile = window.innerWidth < 768;
     const isTablet = window.innerWidth < 1024;
+
+    const initialLogoScale = isMobile ? 1.5 : 2;
 
     const scrollTl = gsap.timeline({
       scrollTrigger: {
@@ -83,16 +84,17 @@ export default function LandingPage() {
       },
     });
 
-    scrollTl.to(
-      logoRef.current,
+    scrollTl.fromTo(logoRef.current, {
+      scale: initialLogoScale,
+      color: "#a10000"
+    },
       {
-        scale: isMobile ? 2 : isTablet ? 2.5 : 3,
-        color: "#e5e5e5",
-        duration: 1,
-        ease: "none",
-      },
-      0
-    );
+      scale: isMobile ? 3 : isTablet ? 3.5 : 4,
+      color: "#e5e5e5",
+      transformOrigin: "center center",
+      duration: 1,
+      ease: "none",
+    });
 
     scrollTl.to(
       manRef.current,
@@ -224,38 +226,35 @@ export default function LandingPage() {
             right: "2vw",
             top: "60vh",
           }}
-        />
+        >
+          <div className="flex h-full px-4 py-2">
+            <Image
+              src="/pngfind.com-magazine-png-895190.png"
+              alt="text img"
+              className="h-[100%] w-auto object-contain"
+              width={300}
+              height={400} />
+          </div>
+        </div>
 
         <div
           ref={labTextRef}
           className="absolute left-[4vw] sm:left-[6vw] lg:left-[8vw] top-[30vh] sm:top-[32vh] lg:top-[35vh] z-20"
         >
-          <h2 className="text-[12vw] sm:text-[10vw] lg:text-[8vw] font-black text-black leading-none">
+          <h2 className="text-[12vw] sm:text-[10vw] lg:text-[8vw] font-black text-stone-800 leading-none">
             lab.
           </h2>
-        </div>
-
-        {/* Moved crafting text to be right above the red box */}
-        <div
-          ref={textRef}
-          className="absolute right-[4vw] sm:right-[19vw] lg:right-[32vw] top-[48vh] sm:top-[50vh] lg:top-[52vh] z-20"
-        >
-          <p className="text-xs sm:text-sm lg:text-base text-gray-800 max-w-[250px] sm:max-w-[280px] lg:max-w-[300px] leading-relaxed">
-            Crafting the next fashion. High-grade fabrics, clean lines,
-            effortless.
-          </p>
         </div>
 
         <div
           ref={numberRef}
           className="absolute left-[4vw] sm:left-[6vw] lg:left-[8vw] bottom-[10vh] sm:bottom-[12vh] lg:bottom-[15vh] z-20"
         >
-          <span className="text-[6vw] sm:text-[5vw] lg:text-[4vw] font-black text-black transform -rotate-90 inline-block origin-center">
+          <span className="text-[6vw] sm:text-[5vw] lg:text-[4vw] font-black text-stone-600 transform -rotate-90 inline-block origin-center">
             100
           </span>
         </div>
 
-        {/* Model image with responsive sizing */}
         <div className="relative z-10 w-auto h-[60vh] sm:h-[70vh] lg:h-[80vh]">
           <Image
             ref={manRef}
