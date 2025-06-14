@@ -1,26 +1,27 @@
-"use client";
+"use client"; // This tells Next.js that this is a client componenent, not a server component
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import { Menu } from "lucide-react";
+import { useEffect, useRef } from "react"; //useEffect to run animations after the component is mounted. useRef points to DOM nodes so we can animate them
+import gsap from "gsap"; // used for animation
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // scroll trigger plugin
+import Image from "next/image"; // image
+import { Menu } from "lucide-react"; //icon 
 
 export default function LandingPage() {
-  const manRef = useRef(null);
-  const logoRef = useRef(null);
-  const containerRef = useRef(null);
-  const navRef = useRef(null);
-  const labTextRef = useRef(null);
-  const numberRef = useRef(null);
-  const redBoxRef = useRef(null);
-  const initialTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const manRef = useRef(null); //model img
+  const logoRef = useRef(null); //logo text 
+  const containerRef = useRef(null); //fullscreen scroll container
+  const navRef = useRef(null); // nav bar
+  const labTextRef = useRef(null); //lab tex
+  const numberRef = useRef(null); // number (100)
+  const redBoxRef = useRef(null); // red box with img
+  const initialTimelineRef = useRef<gsap.core.Timeline | null>(null); //to store the initial timeline
 
-  const playInitialAnimation = () => {
+  const playInitialAnimation = () => { // this function triggers the intro animation when the page first page loads
     if (initialTimelineRef.current) {
       initialTimelineRef.current.kill();
-    }
+    } // Prevents overlapping animations by destroying the precious one if it exists
 
+    // Here we set initial states
     gsap.set(manRef.current, { scale: 1.2 });
     gsap.set(logoRef.current, { scale: 0.8, color: "#000000" });
 
@@ -29,15 +30,15 @@ export default function LandingPage() {
     gsap.set(numberRef.current, { y: 100, opacity: 0 });
     gsap.set(redBoxRef.current, { x: "100vw", opacity: 0 });
 
-    const tl = gsap.timeline();
+    const tl = gsap.timeline(); //timeline sequence. GSAP timeline lets you chain animations with precise control over their sequencing
 
-    tl.fromTo(
+    tl.fromTo( //gsap method that creates an animation from starting value to an ending value and adds it to the timeline. 
       manRef.current,
       { scale: 1.2 },
       {
         scale: 1,
         duration: 2,
-        ease: "power2.out",
+        ease: "power2.out", // the animation will start faster and then slow down 
       }
     );
 
@@ -50,17 +51,18 @@ export default function LandingPage() {
         duration: 3,
         ease: "power2.out",
       },
-      "<"
+      "<" // this means start at the same time as previous animation
     );
 
     initialTimelineRef.current = tl;
     return tl;
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => { // runs when the component is mounted 
 
-    gsap.registerPlugin(ScrollTrigger);
+    window.scrollTo(0, 0); // ensures that the user always starts at the top of the page 
+
+    gsap.registerPlugin(ScrollTrigger); //registering gsap plugin. it must be registered before use. 
 
     playInitialAnimation();
 
@@ -71,18 +73,18 @@ export default function LandingPage() {
 
     const scrollTl = gsap.timeline({
       scrollTrigger: {
-        trigger: containerRef.current,
+        trigger: containerRef.current, //animation trigger
         start: "top top",
         end: "+=100%",
-        scrub: 1,
-        pin: true,
-        onEnterBack: () => {
+        scrub: 1, //syncs scroll position with animation progress 
+        pin: true, // pins the container in place during scroll
+        onEnterBack: () => { // replays initial animation when scrolling back up 
           playInitialAnimation();
         },
       },
     });
 
-    scrollTl.fromTo(
+    scrollTl.fromTo( // logo animation
       logoRef.current,
       {
         scale: initialLogoScale,
@@ -97,7 +99,7 @@ export default function LandingPage() {
       }
     );
 
-    scrollTl.to(
+    scrollTl.to( // model moves to bottom-right
       manRef.current,
       {
         x: isMobile ? "20vw" : isTablet ? "30vw" : "35vw",
@@ -108,7 +110,7 @@ export default function LandingPage() {
       0
     );
 
-    scrollTl.to(
+    scrollTl.to( // nav bar appears
       navRef.current,
       {
         y: 0,
@@ -119,7 +121,7 @@ export default function LandingPage() {
       0.2
     );
 
-    scrollTl.to(
+    scrollTl.to( //red box slides in
       redBoxRef.current,
       {
         x: 0,
@@ -130,7 +132,7 @@ export default function LandingPage() {
       0.3
     );
 
-    scrollTl.to(
+    scrollTl.to( //lab text animation
       labTextRef.current,
       {
         x: 0,
@@ -141,7 +143,7 @@ export default function LandingPage() {
       0.4
     );
 
-    scrollTl.to(
+    scrollTl.to( //100 number animation
       numberRef.current,
       {
         y: 0,
@@ -159,7 +161,7 @@ export default function LandingPage() {
 
     window.addEventListener("resize", handleResize);
 
-    return () => {
+    return () => { //cleanup on unmount
       if (initialTimelineRef.current) {
         initialTimelineRef.current.kill();
       }
