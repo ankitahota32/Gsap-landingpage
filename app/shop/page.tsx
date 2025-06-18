@@ -54,7 +54,7 @@ const clothingItems = [
   {
     id: 5,
     name: "Leather Boots",
-    price: 129.99,
+    price: 129,
     originalPrice: 159.99,
     image: "/cloths/gsap cloth 5.jpg",
     category: "Shoes",
@@ -210,7 +210,7 @@ export default function ShopPage() {
               {categories.map((category) => (
                 <button
                   onClick={() => setSelectedCategory(category)}
-                  className={`text-sm px-4 py-2 rounded-md transition-colors ${
+                  className={`text-sm px-4 py-2 rounded-md transition-colors text-black ${
                     selectedCategory === category
                       ? "bg-black text-white"
                       : "border border-gray-300 hover:bg-gray-50"
@@ -231,7 +231,7 @@ export default function ShopPage() {
               key={item.id}
               className="group cursor-pointer hover:shadow-lg transition-shadow duration-300 bg-white rounded-lg"
             >
-              <div className="p-0">
+              <div className="p-3">
                 <div className="relative overflow-hidden rounded-lg mb-4">
                   <button className="p-2 hover:bg-gray-100 rounded-md transition-colors absolute top-2 right-2 z-10 bg-white/80 hover:bg-white">
                     <Heart className="w-4 h-4 text-red-800" />
@@ -248,7 +248,7 @@ export default function ShopPage() {
                   <h3 className="font-semibold text-lg text-black group-hover:text-gray-600 transition-colors">
                     {item.name}
                   </h3>
-                  <div className="flex gap-30">
+                  <div className="flex gap-25">
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       <span className="text-sm text-gray-600">
@@ -266,20 +266,7 @@ export default function ShopPage() {
                       )}
                     </div>
                   </div>
-                  {/* <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm text-gray-600">{item.rating}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-black">
-                      ${item.price}
-                    </span>
-                    {item.originalPrice > item.price && (
-                      <span className="text-sm text-gray-500 line-through">
-                        ${item.originalPrice}
-                      </span>
-                    )}
-                  </div> */}
+            
                   <div className="flex gap-1">
                     {item.colors.map((color, index) => (
                       <div
