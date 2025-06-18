@@ -188,7 +188,7 @@ export default function ShopPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`text-sm px-4 py-2 rounded-md transition-colors text-black ${
                     selectedCategory === category
-                      ? "bg-black text-black"
+                      ? "bg-black text-white"
                       : "border border-gray-300 hover:bg-gray-50"
                   }`}
                   key={category}
@@ -225,7 +225,7 @@ export default function ShopPage() {
         )}
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-9">
           {filteredItems.map((item) => (
             <div
               key={item.id}
@@ -248,7 +248,25 @@ export default function ShopPage() {
                   <h3 className="font-semibold text-lg text-black group-hover:text-gray-600 transition-colors">
                     {item.name}
                   </h3>
-                  <div className="flex items-center gap-1">
+                  <div className="flex gap-30">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <span className="text-sm text-gray-600">
+                        {item.rating}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-bold text-black">
+                        ${item.price}
+                      </span>
+                      {item.originalPrice > item.price && (
+                        <span className="text-sm text-gray-500 line-through">
+                          ${item.originalPrice}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  {/* <div className="flex items-center gap-1">
                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     <span className="text-sm text-gray-600">{item.rating}</span>
                   </div>
@@ -261,7 +279,7 @@ export default function ShopPage() {
                         ${item.originalPrice}
                       </span>
                     )}
-                  </div>
+                  </div> */}
                   <div className="flex gap-1">
                     {item.colors.map((color, index) => (
                       <div
