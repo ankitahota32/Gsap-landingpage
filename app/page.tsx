@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import LandingPage from '@/components/landingpage';
+// import ProductsPage from '@/components/productpage';
 
 
 export default function Home() {

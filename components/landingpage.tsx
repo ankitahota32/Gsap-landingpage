@@ -188,7 +188,7 @@ export default function LandingPage() {
           </div>
           <div className="flex space-x-4 sm:space-x-8">
             <a
-              href="#"
+              href="/shop"
               className="text-sm sm:text-base text-black hover:text-gray-600 transition-colors"
             >
               SHOP
