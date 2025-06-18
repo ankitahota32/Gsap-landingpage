@@ -3,142 +3,141 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Filter, Heart, ShoppingBag, Star } from "lucide-react";
+import { Menu, Filter, Heart, ShoppingBag, Star, Sparkles } from "lucide-react";
 
-// Sample clothing data
-const clothingItems = [
+// New arrivals data - only items marked as new
+const newArrivals = [
   {
     id: 1,
-    name: "Prism Tee",
+    name: "Floral brust",
     price: 29.99,
-    originalPrice: 39.99,
-    image: "/cloths/gsap cloth 1.jpg",
-    category: "T-Shirts",
+    originalPrice: 39,
+    image: "/new-arrivals/new-1.webp",
+    category: "Dresses",
     isNew: true,
     rating: 4.5,
     colors: ["Black", "White", "Gray"],
   },
   {
-    id: 2,
-    name: "Leather Jacket Classic",
-    price: 89.99,
-    originalPrice: 119.99,
-    image: "/cloths/gsap cloth 2.webp",
-    category: "Jackets",
-    isNew: false,
-    rating: 4.8,
-    colors: ["Blue", "Black"],
-  },
-  {
     id: 3,
-    name: "Chrom hoddies",
+    name: "Leather boots",
     price: 59.99,
-    originalPrice: 79.99,
-    image: "/cloths/gsap cloth 3.jpg",
-    category: "Jeans",
+    originalPrice: 79,
+    image: "/new-arrivals/new-2.webp",
+    category: "Boots",
     isNew: true,
     rating: 4.3,
     colors: ["Blue", "Black", "Gray"],
   },
   {
-    id: 4,
-    name: "Experimental Denim",
-    price: 49.99,
-    originalPrice: 69.99,
-    image: "/cloths/gsap cloth 4.jpg",
-    category: "Hoodies",
-    isNew: false,
-    rating: 4.6,
-    colors: ["Black", "Gray", "Navy"],
-  },
-  {
     id: 5,
-    name: "Crazy sneakers",
-    price: 129,
-    originalPrice: 159.99,
-    image: "/cloths/gsap cloth 5.jpg",
-    category: "Shoes",
+    name: "Cosmic heels",
+    price: 129.99,
+    originalPrice: 159,
+    image: "/new-arrivals/new-3.webp",
+    category: "Heels",
     isNew: true,
     rating: 4.7,
     colors: ["Brown", "Black"],
   },
   {
-    id: 6,
-    name: "Sports jacket",
-    price: 99.99,
-    originalPrice: 139.99,
-    image: "/cloths/gsap cloth 6.jpg",
-    category: "Blazers",
-    isNew: false,
-    rating: 4.4,
-    colors: ["Navy", "Gray", "Black"],
-  },
-  {
     id: 7,
-    name: "Tank top",
+    name: "Baggy jeans",
     price: 69.99,
-    originalPrice: 89.99,
-    image: "/cloths/gsap cloth 7.jpg",
-    category: "Dresses",
+    originalPrice: 89,
+    image: "/new-arrivals/new04.jpg",
+    category: "Jeans",
     isNew: true,
     rating: 4.5,
     colors: ["Floral", "Black", "White"],
   },
   {
-    id: 8,
-    name: "Leather pants",
-    price: 24.99,
-    originalPrice: 34.99,
-    image: "/cloths/gsap cloth 8.jpg",
-    category: "Shorts",
-    isNew: false,
-    rating: 4.2,
-    colors: ["Black", "Gray", "Navy"],
+    id: 9,
+    name: "Summer Shirt",
+    price: 119.99,
+    originalPrice: 149,
+    image: "/new-arrivals/new05.webp",
+    category: "T-Shirts",
+    isNew: true,
+    rating: 4.8,
+    colors: ["Olive", "Black", "Navy"],
+  },
+  {
+    id: 10,
+    name: "Ribbed Knit Sweater",
+    price: 79.99,
+    originalPrice: 99,
+    image: "/new-arrivals/new-6.webp",
+    category: "Sweaters",
+    isNew: true,
+    rating: 4.6,
+    colors: ["Cream", "Gray", "Black"],
+  },
+  {
+    id: 11,
+    name: "Summer Outfit",
+    price: 89.99,
+    originalPrice: 109,
+    image: "/new-arrivals/new-7.webp",
+    category: "Dresses",
+    isNew: true,
+    rating: 4.4,
+    colors: ["Black", "Navy", "Beige"],
+  },
+  {
+    id: 12,
+    name: "Pencil Skirt",
+    price: 99.99,
+    originalPrice: 129,
+    image: "/new-arrivals/new08.webp",
+    category: "Skirts",
+    isNew: true,
+    rating: 4.7,
+    colors: ["White", "Black", "Gray"],
   },
 ];
 
 const categories = [
   "All",
   "T-Shirts",
-  "Jackets",
   "Jeans",
-  "Hoodies",
-  "Shoes",
-  "Blazers",
   "Dresses",
-  "Shorts",
+  "Boots",
+  "Sweaters",
+    "Heels",
+  "Skirts",
 ];
 
-export default function ShopPage() {
+export default function NewArrivalsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showFilters, setShowFilters] = useState(false);
 
   const filteredItems =
     selectedCategory === "All"
-      ? clothingItems
-      : clothingItems.filter((item) => item.category === selectedCategory);
+      ? newArrivals
+      : newArrivals.filter((item) => item.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+          <div className="flex justify-between items-center h-16 ">
             <div className="flex items-center gap-8">
               <Link
-                href="/shop"
+                href="/"
                 className="text-xl font-bold text-black hover:text-gray-600 transition-colors"
               >
                 X-LABS
               </Link>
               <div className="hidden md:flex space-x-8">
-                <Link href="/shop" className="text-black font-medium">
-                  SHOP
-                </Link>
                 <Link
-                  href="/new-arrivals"
+                  href="/shop"
                   className="text-gray-600 hover:text-black transition-colors"
                 >
+                  SHOP
+                </Link>
+                <Link href="/new-arrivals" className="text-black font-medium">
                   NEW ARRIVALS
                 </Link>
               </div>
@@ -159,15 +158,26 @@ export default function ShopPage() {
       </nav>
 
       {/* Hero Section */}
-      <div className="bg-gray-50 py-12">
+      <div className="bg-gradient-to-r from-blue-500 to-purple-950 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-black mb-4">
-            SHOP COLLECTION
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover our latest fashion pieces designed for the modern
-            individual. Quality meets style in every piece.
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Sparkles className="w-8 h-8 text-yellow-400" />
+            <h1 className="text-4xl md:text-6xl font-bold text-white">
+              NEW ARRIVALS
+            </h1>
+            <Sparkles className="w-8 h-8 text-yellow-400" />
+          </div>
+          <p className="text-lg text-red-100 max-w-2xl mx-auto">
+            <i>
+              Fresh styles just dropped! Be the first to discover our latest
+              fashion pieces designed for trendsetters.
+            </i>
           </p>
+          <div className="mt-6 inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white">
+            <span className="text-sm font-medium">
+              {newArrivals.length} New Items Added
+            </span>
+          </div>
         </div>
       </div>
 
@@ -179,7 +189,7 @@ export default function ShopPage() {
               onClick={() => setShowFilters(!showFilters)}
               className="md:hidden px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors flex items-center text-black"
             >
-              <Filter className="w-4 h-4 mr-2" />
+              <Filter className="w-4 h-4 mr-2 text-black" />
               Filters
             </button>
             <div className="hidden md:flex flex-wrap gap-2">
@@ -188,7 +198,7 @@ export default function ShopPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`text-sm px-4 py-2 rounded-md transition-colors text-black ${
                     selectedCategory === category
-                      ? "bg-black text-white"
+                      ? "bg-blue-600 text-white"
                       : "border border-gray-300 hover:bg-gray-50"
                   }`}
                   key={category}
@@ -198,8 +208,8 @@ export default function ShopPage() {
               ))}
             </div>
           </div>
-          <div className="text-sm text-gray-800">
-            {filteredItems.length} items
+          <div className="text-sm text-gray-600">
+            {filteredItems.length} new items
           </div>
         </div>
 
@@ -212,7 +222,7 @@ export default function ShopPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`text-sm px-4 py-2 rounded-md transition-colors text-black ${
                     selectedCategory === category
-                      ? "bg-black text-white"
+                      ? "bg-blue-600 text-white"
                       : "border border-gray-300 hover:bg-gray-50"
                   }`}
                   key={category}
@@ -225,16 +235,20 @@ export default function ShopPage() {
         )}
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-9">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="group cursor-pointer hover:shadow-lg transition-shadow duration-300 bg-white rounded-lg"
+              className="group cursor-pointer hover:shadow-lg transition-shadow duration-300 bg-white rounded-lg border border-gray-100"
             >
-              <div className="p-3">
+              <div className="p-2">
                 <div className="relative overflow-hidden rounded-lg mb-4">
+                  <div className="absolute top-2 left-2 z-10 bg-blue-500 text-white text-xs px-2 py-1 rounded-md font-semibold flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" />
+                    NEW
+                  </div>
                   <button className="p-2 hover:bg-gray-100 rounded-md transition-colors absolute top-2 right-2 z-10 bg-white/80 hover:bg-white">
-                    <Heart className="w-4 h-4 text-red-800" />
+                    <Heart className="w-4 h-4 text-red-700" />
                   </button>
                   <Image
                     src={item.image || "/placeholder.svg"}
@@ -243,8 +257,11 @@ export default function ShopPage() {
                     height={400}
                     className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute bottom-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded-md">
+                    Just Added
+                  </div>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 p-4">
                   <h3 className="font-semibold text-lg text-black group-hover:text-gray-600 transition-colors">
                     {item.name}
                   </h3>
@@ -266,7 +283,7 @@ export default function ShopPage() {
                       )}
                     </div>
                   </div>
-            
+
                   <div className="flex gap-1">
                     {item.colors.map((color, index) => (
                       <div
@@ -276,18 +293,37 @@ export default function ShopPage() {
                           backgroundColor:
                             color.toLowerCase() === "floral"
                               ? "#f3f4f6"
+                              : color.toLowerCase() === "olive"
+                              ? "#6b7280"
+                              : color.toLowerCase() === "cream"
+                              ? "#fef3c7"
+                              : color.toLowerCase() === "beige"
+                              ? "#d2b48c"
                               : color.toLowerCase(),
                         }}
                       />
                     ))}
                   </div>
-                  <button className="w-full mt-4 bg-black hover:bg-gray-800 text-white py-2 px-4 rounded-md transition-colors">
+                  <button className="w-full mt-4 bg-violet-600 hover:bg-purple-9.00 text-white py-2 px-4 rounded-md transition-colors">
                     Add to Cart
                   </button>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Special Offer Section */}
+        <div className="mt-16 bg-gradient-to-r from-gray-900 to-black rounded-2xl p-8 text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">
+            First to Shop, First to Style
+          </h2>
+          <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+            <i>
+              Get exclusive early access to our newest collections. Never miss a
+              day to look <b>gorgeous</b>. Shop now !
+            </i>
+          </p>
         </div>
       </div>
 
@@ -314,7 +350,7 @@ export default function ShopPage() {
                 </li>
                 <li>
                   <Link
-                    href="/shop?filter=new"
+                    href="/new-arrivals"
                     className="hover:text-white transition-colors"
                   >
                     New Arrivals

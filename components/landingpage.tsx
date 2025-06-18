@@ -194,7 +194,7 @@ export default function LandingPage() {
               SHOP
             </a>
             <a
-              href="#"
+              href="/new-arrivals"
               className="text-sm sm:text-base text-black hover:text-gray-600 transition-colors"
             >
               NEW ARRIVALS
