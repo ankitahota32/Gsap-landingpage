@@ -1,10 +1,8 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import LandingPage from '@/components/landingpage';
-// import ProductsPage from '@/components/productpage';
-
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import LoginPage from "@/components/auth/login";
 
 export default function Home() {
   const manRef = useRef<HTMLElement | null>(null);
@@ -16,21 +14,24 @@ export default function Home() {
     tl.to(manRef.current, {
       scale: 0.8,
       duration: 2,
-      ease: 'power2.out',
+      ease: "power2.out",
     });
 
-    tl.to(logoRef.current, {
-      scale: 1.2,
-      color: "#FF0000",
-      duration: 2,
-      ease: "power2.out",
-    }, '<');
+    tl.to(
+      logoRef.current,
+      {
+        scale: 1.2,
+        color: "#FF0000",
+        duration: 2,
+        ease: "power2.out",
+      },
+      "<"
+    );
   }, []);
 
   return (
     <main>
-      <LandingPage />
+      <LoginPage />
     </main>
-  )
-
+  );
 }
