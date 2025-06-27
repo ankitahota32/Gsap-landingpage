@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const Api = axios.create({
-  baseURL: "http://localhost:4001/api",
+  baseURL: "https://gsap-landing-backend.onrender.com",
 });
