@@ -12,6 +12,6 @@ export const login = async (data: { email: string; password: string }) => {
   return (await Api.post("/auth/login", data)).data;
 };
 
-// export const otpPass = async (data: { otp: string }) => {
-//   return (await Api.post("auth/send-reset-otp", data)).data;
-// };
+export const otpPass = async (data: { otp: string }) => {
+  return (await Api.post("auth/send-reset-otp", data)).data;
+};
