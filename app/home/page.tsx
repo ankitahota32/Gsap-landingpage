@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react"; //useEffect to run animations after t
 import gsap from "gsap"; // used for animation
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // scroll trigger plugin
 import Image from "next/image"; // image
-import { Menu } from "lucide-react"; //icon 
+import { User } from "lucide-react"; //icon 
+import Link from "next/link";
 
 export default function LandingPage() {
   const manRef = useRef(null); //model img
@@ -199,9 +200,12 @@ export default function LandingPage() {
             >
               NEW ARRIVALS
             </a>
-            <button className=" hover:bg-gray-100 rounded-md transition-colors">
-              <Menu className="w-5 h-5 text-black" />
-            </button>
+            <Link
+              href="/profile"
+              className="hover:bg-gray-100 rounded-md transition-colors"
+            >
+              <User className="w-5 h-5 text-black" />
+            </Link>
           </div>
         </nav>
 
