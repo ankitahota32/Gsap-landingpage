@@ -142,7 +142,7 @@ export default function NewArrivalsPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [showCart, setShowCart] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [, setOrders] = useState<Order[]>([]);
   const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
   const [lastOrderId, setLastOrderId] = useState<string>("");
   const [customerInfo, setCustomerInfo] = useState({

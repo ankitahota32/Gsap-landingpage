@@ -7,24 +7,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { Calendar, Mail, Package, ShoppingBag, User } from "lucide-react";
-
-// Mock API service - replace with your actual API
-// const Api = {
-//   get: async (url: string) => {
-//     // Mock implementation - replace with your actual API call
-//     await new Promise((resolve) => setTimeout(resolve, 1000));
-//     return {
-//       data: {
-//         user: {
-//           _id: userId,
-//           name: user.name,
-//           email: user.email,
-//         },
-//         orders: [],
-//       },
-//     };
-//   },
-// };
+import Image from "next/image";
 
 interface iOrderItem {
   name: string;
@@ -215,9 +198,11 @@ function ProfilePageContent() {
                               key={itemIndex}
                               className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
                             >
-                              <img
+                              <Image
                                 src={item.image || "/placeholder.svg"}
                                 alt={item.name}
+                                width={48}
+                                height={48}
                                 className="w-12 h-12 object-cover rounded-md border"
                               />
                               <div className="flex-1 min-w-0">
@@ -269,7 +254,6 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 5 * 60 * 1000, // 5 minutes
-      cacheTime: 10 * 60 * 1000, // 10 minutes
     },
   },
 });
