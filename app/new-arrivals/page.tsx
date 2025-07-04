@@ -508,7 +508,7 @@ export default function NewArrivalsPage() {
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-black">Checkout</h2>
                 <button onClick={() => setShowCheckout(false)}>
-                  <X className="w-6 h-6" />
+                  <X className="w-6 h-6 text-black" />
                 </button>
               </div>
 
